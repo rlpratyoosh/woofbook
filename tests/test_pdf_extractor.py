@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 
-from audiobook.pdf_extractor import Chapter, PDFExtractor
+from woofbook.pdf_extractor import Chapter, PDFExtractor
 
 
 class TestPDFExtractor(unittest.TestCase):

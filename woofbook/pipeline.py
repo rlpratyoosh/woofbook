@@ -27,7 +27,7 @@ def sanitize_filename(text: str) -> str:
 slugify = sanitize_filename
 
 
-class AudiobookPipeline:
+class WoofbookPipeline:
     def __init__(
         self,
         pdf_path: str | Path,
@@ -142,7 +142,7 @@ class AudiobookPipeline:
     def run(self, merge_master: bool = True) -> Dict[str, any]:
         pipeline_start_time = time.time()
         print("\n" + "=" * 65)
-        print(f"📖 Starting Audiobook Generation: {self.book_metadata.get('title')}")
+        print(f"📖 Starting Woofbook Generation: {self.book_metadata.get('title')}")
         print(f"👤 Author      : {self.book_metadata.get('author')}")
         print(f"🎙️  Voice       : {self.voice}")
         print(f"🎵 Format      : {self.audio_format.upper()} ({self.audio_bitrate})")
@@ -262,3 +262,6 @@ class AudiobookPipeline:
             "master_file": master_audiobook_path,
             "elapsed_seconds": total_elapsed_seconds,
         }
+
+
+AudiobookPipeline = WoofbookPipeline

@@ -3,8 +3,8 @@ from unittest.mock import MagicMock
 
 import numpy as np
 
-from audiobook.config import DEFAULT_MODEL_WEIGHTS_PATH
-from audiobook.tts_engine import TTSEngine
+from woofbook.config import DEFAULT_MODEL_WEIGHTS_PATH
+from woofbook.tts_engine import TTSEngine
 
 
 class TestTTSEngine(unittest.TestCase):

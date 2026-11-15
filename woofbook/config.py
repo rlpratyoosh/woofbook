@@ -3,11 +3,12 @@ from typing import Optional
 
 from .config_parser import (
     AudiobookConfiguration,
+    WoofbookConfiguration,
     find_config_toml_path,
     parse_config_toml,
 )
 
-ACTIVE_CONFIGURATION: AudiobookConfiguration = parse_config_toml()
+ACTIVE_CONFIGURATION: WoofbookConfiguration = parse_config_toml()
 
 DEFAULT_MODEL_DIRECTORY = ACTIVE_CONFIGURATION.model_directory
 DEFAULT_MODEL_WEIGHTS_PATH = ACTIVE_CONFIGURATION.model_weights_path
@@ -40,7 +41,7 @@ DEFAULT_EOS = DEFAULT_END_OF_SPEECH_THRESHOLD
 DEFAULT_RETRIES = DEFAULT_MAX_RETRIES
 
 
-def reload_configuration(custom_config_path: Optional[str | Path] = None) -> AudiobookConfiguration:
+def reload_configuration(custom_config_path: Optional[str | Path] = None) -> WoofbookConfiguration:
     global ACTIVE_CONFIGURATION, DEFAULT_MODEL_DIRECTORY, DEFAULT_MODEL_WEIGHTS_PATH
     global DEFAULT_BOOKS_DIRECTORY, DEFAULT_AUDIO_OUTPUT_DIRECTORY, AUDIO_SAMPLE_RATE
     global AVAILABLE_VOICES, DEFAULT_VOICE, DEFAULT_OUTPUT_FORMAT, DEFAULT_AUDIO_BITRATE

@@ -18,14 +18,16 @@ from .config import (
 )
 from .config_parser import (
     AudiobookConfiguration,
+    WoofbookConfiguration,
     find_config_toml_path,
     parse_config_toml,
 )
 from .pdf_extractor import Chapter, PDFExtractor
-from .pipeline import AudiobookPipeline, sanitize_filename
+from .pipeline import AudiobookPipeline, WoofbookPipeline, sanitize_filename
 from .tts_engine import TTSEngine
 
 __all__ = [
+    "WoofbookPipeline",
     "AudiobookPipeline",
     "PDFExtractor",
     "Chapter",
@@ -33,6 +35,7 @@ __all__ = [
     "AudioExporter",
     "CheckpointManager",
     "sanitize_filename",
+    "WoofbookConfiguration",
     "AudiobookConfiguration",
     "find_config_toml_path",
     "parse_config_toml",

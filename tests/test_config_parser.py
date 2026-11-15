@@ -3,12 +3,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from audiobook.config_parser import (
-    AudiobookConfiguration,
+from woofbook.config_parser import (
+    WoofbookConfiguration,
     find_config_toml_path,
     parse_config_toml,
 )
-import audiobook.config as config
+import woofbook.config as config
 
 
 class TestConfigParser(unittest.TestCase):
@@ -20,7 +20,7 @@ class TestConfigParser(unittest.TestCase):
         self.temporary_test_directory.cleanup()
 
     def test_default_configuration_values(self):
-        default_config = AudiobookConfiguration()
+        default_config = WoofbookConfiguration()
         self.assertEqual(default_config.voice, "juno")
         self.assertEqual(default_config.output_format, "mp3")
         self.assertEqual(default_config.sample_rate, 24000)
@@ -104,16 +104,16 @@ temperature = 0.65
         env_toml_path = self.base_path / "env_config.toml"
         env_toml_path.write_text("voice = 'mira'", encoding="utf-8")
 
-        original_env = os.environ.get("AUDIOBOOK_CONFIG_FILE")
+        original_env = os.environ.get("WOOFBOOK_CONFIG_FILE")
         try:
-            os.environ["AUDIOBOOK_CONFIG_FILE"] = str(env_toml_path)
+            os.environ["WOOFBOOK_CONFIG_FILE"] = str(env_toml_path)
             found_path = find_config_toml_path()
             self.assertEqual(found_path, env_toml_path.resolve())
         finally:
             if original_env is not None:
-                os.environ["AUDIOBOOK_CONFIG_FILE"] = original_env
+                os.environ["WOOFBOOK_CONFIG_FILE"] = original_env
             else:
-                os.environ.pop("AUDIOBOOK_CONFIG_FILE", None)
+                os.environ.pop("WOOFBOOK_CONFIG_FILE", None)
 
     def test_reload_configuration_updates_module_variables(self):
         temp_config_path = self.base_path / "reload_test.toml"

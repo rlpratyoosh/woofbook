@@ -2,10 +2,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from audiobook.pipeline import AudiobookPipeline, sanitize_filename
+from woofbook.pipeline import WoofbookPipeline, sanitize_filename
 
 
-class TestAudiobookPipeline(unittest.TestCase):
+class TestWoofbookPipeline(unittest.TestCase):
     def setUp(self):
         self.temporary_test_directory = tempfile.TemporaryDirectory()
         self.output_directory_path = Path(self.temporary_test_directory.name)
@@ -21,7 +21,7 @@ class TestAudiobookPipeline(unittest.TestCase):
 
     def test_pipeline_initialization_configures_output_directory(self):
         custom_target_directory = self.output_directory_path / "custom_output"
-        pipeline = AudiobookPipeline(
+        pipeline = WoofbookPipeline(
             pdf_path=self.sample_pdf_path,
             output_directory=custom_target_directory,
         )
@@ -34,7 +34,7 @@ class TestAudiobookPipeline(unittest.TestCase):
         )
 
     def test_pipeline_list_chapters_delegation(self):
-        pipeline = AudiobookPipeline(
+        pipeline = WoofbookPipeline(
             pdf_path=self.sample_pdf_path,
             output_directory=self.output_directory_path,
         )
@@ -44,7 +44,7 @@ class TestAudiobookPipeline(unittest.TestCase):
         self.assertEqual(chapters[0].index, 1)
 
     def test_dry_run_export_text_generates_formatted_file(self):
-        pipeline = AudiobookPipeline(
+        pipeline = WoofbookPipeline(
             pdf_path=self.sample_pdf_path,
             output_directory=self.output_directory_path,
         )

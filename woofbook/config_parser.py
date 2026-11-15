@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional, Tuple
 
 
 @dataclass
-class AudiobookConfiguration:
+class WoofbookConfiguration:
     model_directory: str = "./"
     model_weights_path: str = "./woof_int8.npz"
     books_directory: Path = field(default_factory=lambda: Path("books").resolve())
@@ -23,6 +23,9 @@ class AudiobookConfiguration:
     max_retries: int = 3
 
 
+AudiobookConfiguration = WoofbookConfiguration
+
+
 def find_config_toml_path(custom_config_path: Optional[str | Path] = None) -> Optional[Path]:
     if custom_config_path:
         explicit_path = Path(custom_config_path).expanduser().resolve()
@@ -30,7 +33,7 @@ def find_config_toml_path(custom_config_path: Optional[str | Path] = None) -> Op
             return explicit_path
         return None
 
-    environment_config_path = os.environ.get("AUDIOBOOK_CONFIG_FILE")
+    environment_config_path = os.environ.get("WOOFBOOK_CONFIG_FILE") or os.environ.get("AUDIOBOOK_CONFIG_FILE")
     if environment_config_path:
         env_path = Path(environment_config_path).expanduser().resolve()
         if env_path.exists():
@@ -55,8 +58,8 @@ def _resolve_relative_path(path_string: str, base_directory: Path) -> Path:
     return (base_directory / target_path).resolve()
 
 
-def parse_config_toml(config_path: Optional[str | Path] = None) -> AudiobookConfiguration:
-    default_configuration = AudiobookConfiguration()
+def parse_config_toml(config_path: Optional[str | Path] = None) -> WoofbookConfiguration:
+    default_configuration = WoofbookConfiguration()
     resolved_config_path = find_config_toml_path(config_path)
 
     combined_toml_entries: Dict[str, Any] = {}
@@ -148,7 +151,7 @@ def parse_config_toml(config_path: Optional[str | Path] = None) -> AudiobookConf
         )
     )
 
-    return AudiobookConfiguration(
+    return WoofbookConfiguration(
         model_directory=resolved_model_directory,
         model_weights_path=resolved_weights_path,
         books_directory=resolved_books_directory,

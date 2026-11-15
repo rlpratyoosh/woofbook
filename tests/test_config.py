@@ -2,7 +2,7 @@ import os
 import unittest
 from pathlib import Path
 
-from audiobook.config import (
+from woofbook.config import (
     AUDIO_SAMPLE_RATE,
     AVAILABLE_VOICES,
     DEFAULT_AUDIO_BITRATE,

@@ -5,7 +5,7 @@ from pathlib import Path
 
 import numpy as np
 
-from audiobook.audio_exporter import AudioExporter
+from woofbook.audio_exporter import AudioExporter
 
 
 class TestAudioExporter(unittest.TestCase):

@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from audiobook.checkpoint_manager import CheckpointManager
+from woofbook.checkpoint_manager import CheckpointManager
 
 
 class TestCheckpointManager(unittest.TestCase):

@@ -7,10 +7,10 @@ from unittest.mock import MagicMock
 
 import numpy as np
 
-from audiobook.pipeline import AudiobookPipeline
+from woofbook.pipeline import WoofbookPipeline
 
 
-class TestAudiobookWorkflowIntegration(unittest.TestCase):
+class TestWoofbookWorkflowIntegration(unittest.TestCase):
     def setUp(self):
         self.temporary_test_directory = tempfile.TemporaryDirectory()
         self.output_directory_path = Path(self.temporary_test_directory.name)
@@ -20,7 +20,7 @@ class TestAudiobookWorkflowIntegration(unittest.TestCase):
         self.temporary_test_directory.cleanup()
 
     def test_full_pipeline_run_generates_chapters_and_master_audiobook(self):
-        pipeline = AudiobookPipeline(
+        pipeline = WoofbookPipeline(
             pdf_path=self.sample_pdf_path,
             output_directory=self.output_directory_path,
             audio_format="mp3",
@@ -47,7 +47,7 @@ class TestAudiobookWorkflowIntegration(unittest.TestCase):
             self.assertTrue(pipeline.checkpoint_manager.is_chapter_completed(chapter_index))
 
     def test_checkpoint_resumption_skips_already_completed_chapters(self):
-        pipeline = AudiobookPipeline(
+        pipeline = WoofbookPipeline(
             pdf_path=self.sample_pdf_path,
             output_directory=self.output_directory_path,
             audio_format="mp3",
@@ -66,7 +66,7 @@ class TestAudiobookWorkflowIntegration(unittest.TestCase):
         self.assertEqual(len(second_run_summary["chapters"]), len(first_run_summary["chapters"]))
 
     def test_force_regeneration_clears_checkpoints_and_resynthesizes(self):
-        pipeline = AudiobookPipeline(
+        pipeline = WoofbookPipeline(
             pdf_path=self.sample_pdf_path,
             output_directory=self.output_directory_path,
             audio_format="mp3",
@@ -75,7 +75,7 @@ class TestAudiobookWorkflowIntegration(unittest.TestCase):
         pipeline._tts_engine.synthesize_paragraphs.return_value = np.zeros(12000, dtype=np.float32)
         pipeline.run(merge_master=False)
 
-        forced_pipeline = AudiobookPipeline(
+        forced_pipeline = WoofbookPipeline(
             pdf_path=self.sample_pdf_path,
             output_directory=self.output_directory_path,
             audio_format="mp3",

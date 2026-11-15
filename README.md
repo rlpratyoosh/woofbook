@@ -1,4 +1,4 @@
-# 🎧 Underdog-Woof Audiobook Generator
+# 🐶 Woofbook
 
 A lightweight Python tool that converts `.pdf` books into chapterized audiobooks using the [Underdog-Woof](https://huggingface.co/ConwayResearch/Underdog-Woof) text-to-speech model by Conway Research.
 
@@ -66,8 +66,8 @@ Before running the generator, ensure system dependencies are installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/rlpratyoosh/audio-book-generator.git
-cd audio-book-generator
+git clone https://github.com/rlpratyoosh/woofbook.git
+cd woofbook
 ```
 
 ### 2. Set Up Virtual Environment
@@ -201,7 +201,7 @@ python3 run_tests.py
 ## 📁 Directory Structure
 
 ```
-audio-book-generator/
+woofbook/
 ├── books/                        # Place input PDF files here
 │   └── sample_book.pdf
 ├── output/                       # Output directory for generated audiobooks
@@ -210,7 +210,7 @@ audio-book-generator/
 │       ├── Chapter_02_....mp3
 │       ├── <book_title>_complete.mp3
 │       └── .checkpoint.json
-├── audiobook/                    # Core library
+├── woofbook/                     # Core library
 │   ├── __init__.py
 │   ├── config.py                 # Configuration loader
 │   ├── config_parser.py          # TOML configuration parser

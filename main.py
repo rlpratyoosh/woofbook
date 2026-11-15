@@ -3,9 +3,9 @@ import argparse
 import sys
 from pathlib import Path
 
-import audiobook.config as config
-from audiobook.config import reload_configuration
-from audiobook.pipeline import AudiobookPipeline
+import woofbook.config as config
+from woofbook.config import reload_configuration
+from woofbook.pipeline import WoofbookPipeline
 
 
 def main() -> None:
@@ -21,7 +21,8 @@ def main() -> None:
         reload_configuration(preliminary_arguments.config)
 
     argument_parser = argparse.ArgumentParser(
-        description="Convert PDF books to full audiobooks."
+        prog="woofbook",
+        description="Convert PDF books to audiobooks using Underdog-Woof.",
     )
     argument_parser.add_argument(
         "pdf",
@@ -136,7 +137,7 @@ def main() -> None:
         sys.exit(1)
 
     try:
-        audiobook_pipeline = AudiobookPipeline(
+        woofbook_pipeline = WoofbookPipeline(
             pdf_path=input_pdf_path,
             output_directory=parsed_arguments.output_dir,
             voice=parsed_arguments.voice,
@@ -151,7 +152,7 @@ def main() -> None:
         )
 
         if parsed_arguments.list_chapters:
-            extracted_chapters = audiobook_pipeline.list_chapters()
+            extracted_chapters = woofbook_pipeline.list_chapters()
             print(f"\n📖 Detected {len(extracted_chapters)} chapter(s) in '{input_pdf_path.name}':")
             print("-" * 65)
             for chapter in extracted_chapters:
@@ -164,11 +165,11 @@ def main() -> None:
             return
 
         if parsed_arguments.dry_run:
-            exported_text_path = audiobook_pipeline.dry_run_export_text()
+            exported_text_path = woofbook_pipeline.dry_run_export_text()
             print(f"\n✅ Dry run completed! Cleaned text exported to:\n   {exported_text_path}")
             return
 
-        audiobook_pipeline.run(merge_master=not parsed_arguments.no_merge)
+        woofbook_pipeline.run(merge_master=not parsed_arguments.no_merge)
 
     except KeyboardInterrupt:
         print("\n\n⚠️ Process interrupted by user. Completed chapters were safely saved to checkpoint.")

@@ -1,0 +1,30 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+
+# Generated audiobook output
+output/
+audio-books/
+*.mp3
+*.wav
+*.m4b
+.checkpoint.json
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test / cache artifacts
+.pytest_cache/
+.coverage

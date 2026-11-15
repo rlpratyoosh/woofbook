@@ -1,0 +1,18 @@
+[model]
+model_directory = "./"
+weights_path = "./woof_int8.npz"
+voice = "juno"
+temperature = 0.5
+end_of_speech_threshold = 0.9
+max_retries = 3
+
+[audio]
+format = "mp3"
+bitrate = "128k"
+sample_rate = 24000
+paragraph_pause_seconds = 0.45
+chapter_pause_seconds = 2.0
+
+[paths]
+books_directory = "books"
+audio_output_directory = "output"
